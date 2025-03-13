@@ -1,0 +1,32 @@
+{
+  "name": "stock-market-automation",
+  "version": "1.0.0",
+  "description": "API for stock market price alert via twilio sms",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "keywords": [
+    "stock",
+    "automation",
+    "twilio",
+    "sms",
+    "server",
+    "api"
+  ],
+  "author": "Kizito917",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "fs-extra": "^11.3.0",
+    "morgan": "^1.10.0",
+    "node-cron": "^3.0.3",
+    "twilio": "^5.5.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  }
+}
