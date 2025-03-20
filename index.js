@@ -37,7 +37,7 @@ try {
     app.listen(port, async () => {
         console.log(`⚡️Server is running at port ${port}`);
 
-        await getMarketPrices();
+        await getMarketPrices('USAR');
     });
 } catch (err) {
     process.exit(1);

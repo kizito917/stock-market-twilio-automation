@@ -4,13 +4,18 @@ const { getMarketPrices } = require('../handlers/stock.handler');
 const accountSid = process.env.TWILIO_ACCOUNT_SID;
 const authToken = process.env.TWILIO_AUTH_TOKEN;
 const twilioNumber = process.env.TWILIO_PHONE_NUMBER;
-const authorizedNumber = process.env.YOUR_PERSONAL_NUMBER;
+const authorizedNumber1 = process.env.PERSONAL_NUMBER_1;
+const authorizedNumber2 = process.env.PERSONAL_NUMBER_2;
 
 const client = new twilio(accountSid, authToken);
 
 const commandHandlers = {
-    'market': async () => {
-        const { marketPrice, volatilityResult } = await getMarketPrices();
+    'get spy': async () => {
+        const { marketPrice, volatilityResult } = await getMarketPrices('SPY');
+        return `Market Price: ${marketPrice}\nVolatility Result: ${volatilityResult}`;
+    },
+    'get usar': async () => {
+        const { marketPrice, volatilityResult } = await getMarketPrices('USAR');
         return `Market Price: ${marketPrice}\nVolatility Result: ${volatilityResult}`;
     }
 };
@@ -23,7 +28,7 @@ const smsWebhook = async (req, res) => {
     console.log(`Received message: "${incomingMessage}" from ${fromNumber}`);
     
     // Only process commands from authorized number
-    if (fromNumber !== authorizedNumber) {
+    if (fromNumber !== authorizedNumber1 || fromNumber !== authorizedNumber2) {
         console.log(`Unauthorized access attempt from ${fromNumber}`);
         twiml.message('Unauthorized number');
         return res.type('text/xml').send(twiml.toString());
@@ -53,7 +58,7 @@ const smsWebhook = async (req, res) => {
 const sendSms = async (to, body) => {
     try {
         console.log("test");
-        const { marketPrice, volatilityResult } = await getMarketPrices();
+        const { marketPrice, volatilityResult } = await getMarketPrices('USAR');
         const message = await client.messages.create({
             body: marketPrice,
             from: twilioNumber,

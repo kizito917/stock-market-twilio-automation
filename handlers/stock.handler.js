@@ -1,7 +1,5 @@
-const stocks = require('../utils/stocks-symbols');
-
-async function getMarketPrices() {
-    const marketPrice = await getSpyMarketPrice('SPY');
+async function getMarketPrices(symbol) {
+    const marketPrice = await getStockMarketCurrentPrice(symbol);
     const volatilityResult = await getVolatilityIndexData();
     
     console.log(marketPrice);
@@ -29,7 +27,7 @@ async function getVolatilityIndexData() {
     }
 }
 
-async function getSpyMarketPrice(marketSymbol) {
+async function getStockMarketCurrentPrice(marketSymbol) {
     try {
         if (!marketSymbol) {
             return null;
