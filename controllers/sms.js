@@ -27,12 +27,12 @@ const smsWebhook = async (req, res) => {
     
     console.log(`Received message: "${incomingMessage}" from ${fromNumber}`);
     
-    // Only process commands from authorized number
-    if (fromNumber !== authorizedNumber1 || fromNumber !== authorizedNumber2) {
-        console.log(`Unauthorized access attempt from ${fromNumber}`);
-        twiml.message('Unauthorized number');
-        return res.type('text/xml').send(twiml.toString());
-    }
+    // // Only process commands from authorized number
+    // if (fromNumber !== authorizedNumber1 || fromNumber !== authorizedNumber2) {
+    //     console.log(`Unauthorized access attempt from ${fromNumber}`);
+    //     twiml.message('Unauthorized number');
+    //     return res.type('text/xml').send(twiml.toString());
+    // }
     
     // Check if the incoming message is a recognized command
     const command = Object.keys(commandHandlers).find(cmd => 
