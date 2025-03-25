@@ -16,7 +16,7 @@ const commandHandlers = {
     },
     'get usar': async () => {
         const { marketPrice, volatilityResult } = await getMarketPrices('USAR');
-        return `Market Price: ${marketPrice}\nVolatility Result: ${volatilityResult}`;
+        return `Market Price: ${marketPrice}`;
     }
 };
 
