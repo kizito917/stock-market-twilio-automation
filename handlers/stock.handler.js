@@ -12,9 +12,9 @@ async function getMarketPrices(symbol) {
 }
 
 async function getVolatilityIndexData() {
-    console.log("I am getting called");
     try {
         const response = await fetch(`${process.env.YAHOO_FINANCE_API_URL}/%5EVIX`);
+        console.log("RESPONSEEE", response);
         if (response.status !== 200 && response.statusText !== 'OK') {
             return null;
         }
@@ -25,19 +25,18 @@ async function getVolatilityIndexData() {
 
         return `The ${longName} (${symbol}) is currently trading at $${regularMarketPrice}, ${regularMarketPrice > previousClose ? 'up' : 'down'} from its previous close of $${previousClose}. Today's trading range is between $${regularMarketDayLow} and $${regularMarketDayHigh}. Over the past 52 weeks, the VIX has ranged from $${fiftyTwoWeekLow} to $${fiftyTwoWeekHigh}.`;
     } catch (err) {
-        console.log("Error from Volatility index result", err);
         return null;
     }
 }
 
 async function getStockMarketCurrentPrice(marketSymbol) {
-    console.log("I am getting called 2");
     try {
         if (!marketSymbol) {
             return null;
         }
 
         const response = await fetch(`${process.env.YAHOO_FINANCE_API_URL}/${marketSymbol}`);
+        console.log("RESPONSEEE 2222", response);
         if (response.status !== 200 && response.statusText !== 'OK') {
             return null;
         }
@@ -48,7 +47,6 @@ async function getStockMarketCurrentPrice(marketSymbol) {
 
         return `The ${longName} (${symbol}) is currently trading at $${regularMarketPrice}, ${regularMarketPrice > previousClose ? 'up' : 'down'} from its previous close of $${previousClose}. Today's trading range is between $${regularMarketDayLow} and $${regularMarketDayHigh}. Over the past 52 weeks, the SPY has ranged from $${fiftyTwoWeekLow} to $${fiftyTwoWeekHigh}.`;
     } catch (err) {
-        console.log("Error from Stock market price result", err);
         return null;
     }
     
