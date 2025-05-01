@@ -12,6 +12,7 @@ async function getMarketPrices(symbol) {
 }
 
 async function getVolatilityIndexData() {
+    console.log("I am getting called");
     try {
         const response = await fetch(`${process.env.YAHOO_FINANCE_API_URL}/%5EVIX`);
         if (response.status !== 200 && response.statusText !== 'OK') {
@@ -30,6 +31,7 @@ async function getVolatilityIndexData() {
 }
 
 async function getStockMarketCurrentPrice(marketSymbol) {
+    console.log("I am getting called 2");
     try {
         if (!marketSymbol) {
             return null;
