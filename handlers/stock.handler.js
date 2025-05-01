@@ -23,6 +23,7 @@ async function getVolatilityIndexData() {
 
         return `The ${longName} (${symbol}) is currently trading at $${regularMarketPrice}, ${regularMarketPrice > previousClose ? 'up' : 'down'} from its previous close of $${previousClose}. Today's trading range is between $${regularMarketDayLow} and $${regularMarketDayHigh}. Over the past 52 weeks, the VIX has ranged from $${fiftyTwoWeekLow} to $${fiftyTwoWeekHigh}.`;
     } catch (err) {
+        console.log("Error from Volatility index result", err);
         return null;
     }
 }
@@ -43,6 +44,7 @@ async function getStockMarketCurrentPrice(marketSymbol) {
 
         return `The ${longName} (${symbol}) is currently trading at $${regularMarketPrice}, ${regularMarketPrice > previousClose ? 'up' : 'down'} from its previous close of $${previousClose}. Today's trading range is between $${regularMarketDayLow} and $${regularMarketDayHigh}. Over the past 52 weeks, the SPY has ranged from $${fiftyTwoWeekLow} to $${fiftyTwoWeekHigh}.`;
     } catch (err) {
+        console.log("Error from Stock market price result", err);
         return null;
     }
     
