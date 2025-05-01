@@ -29,7 +29,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors(corsOptions));
 app.use('/api', smsRoute);
 
-app.get("/", (req, res) => {
+app.get("/", async (req, res) => {
+    await getMarketPrices('USAR');
     res.send("Server is live");
 });
 
